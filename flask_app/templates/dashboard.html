@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css')}}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Login and Registration</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="d-flex">
+            <h1>Welcome: {{user.username}}!</h1>
+            <form class="px-2" action="/delete_session">
+                <input class="btn btn-secondary px-2" type="submit" value="Logout">
+            </form>
+        </nav>
+
+        <form action="/match" method="POST">
+                <h3>Regular Expression</h3>
+                <input type="text" name="regular_expression">
+                <h3>Test String</h3>
+                <input type="text" name="test_string">
+                <h3></h3>
+                <input type="submit" value="Match String!">
+        </form>
+        {% if session["valid"] == False %}
+       <span class="text-danger">{{session["valid"]}}</span>    
+        {% endif %}
+        {% if session["valid"] == True %}
+       <span class="text-success">{{session["valid"]}}</span>    
+        {% endif %}
+    </div>
+</body>
+
+</html>
